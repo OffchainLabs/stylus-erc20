@@ -2,7 +2,9 @@
 
 Implementation example of an ERC-20 token contract written in Rust for Arbitrum Stylus. This project also includes a Solidity Proxy to deploy the ERC-20 contract behind it, so it can be upgraded in the future.
 
-Please note that this Proxy is based on the TransparentUpgradeableProxy of Solidity, but the ERC-20 contract itself is not Initializable.
+Note, that this Proxy is based on the TransparentUpgradeableProxy of Solidity, but the ERC-20 contract itself is not Initializable.
+
+Disclaimer: this code is unaudited and not fit for production use.
 
 ## Getting started
 
