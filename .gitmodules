@@ -1,0 +1,6 @@
+[submodule "proxy/lib/forge-std"]
+	path = proxy/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "proxy/lib/openzeppelin-contracts"]
+	path = proxy/lib/openzeppelin-contracts
+	url = https://github.com/openzeppelin/openzeppelin-contracts
