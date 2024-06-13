@@ -37,9 +37,6 @@ echo "----------------------------------"
 echo "Deploying new Rust ERC-20 contract"
 echo "----------------------------------"
 
-# Move to nft folder
-cd erc20-rust
-
 # Prepare transactions data
 cargo stylus deploy -e $RPC_URL --private-key $PRIVATE_KEY > $DEPLOY_CONTRACT_RESULT_FILE
 
