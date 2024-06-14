@@ -1,8 +1,6 @@
-# Stylus ERC-20 example (upgradeable through a simple transparent Proxy)
+# Stylus ERC-20 example
 
-Implementation example of an ERC-20 token contract written in Rust for Arbitrum Stylus. This project also includes a Solidity Proxy to deploy the ERC-20 contract behind it, so it can be upgraded in the future.
-
-Note, that this Proxy is based on the TransparentUpgradeableProxy of Solidity, but the ERC-20 contract itself is not Initializable.
+Implementation example of an ERC-20 token contract written in Rust for Arbitrum Stylus. 
 
 Disclaimer: this code is unaudited and not fit for production use.
 
@@ -18,6 +16,15 @@ The `scripts` folder contains two scripts to deploy and test the contract:
 2. [./scripts/test.sh](./scripts/test.sh) performs a series of calls to verify that the contract behaves as expected 
 
 Remember to set the environment variables in an `.env` file.
+
+## Deploying behind a proxy
+
+This project also includes a Solidity Proxy to deploy the ERC-20 contract behind it, so it can be upgraded in the future. To do this, use the script [./scripts/deployWithProxy.sh](./scripts/deployWithProxy.sh).
+
+To update the logic contract, use the script [./scripts/updateLogic.sh](./scripts/updateLogic.sh).
+
+Note that this Proxy is based on the TransparentUpgradeableProxy of Solidity, but the ERC-20 contract itself is not Initializable.
+
 
 ## How to run a local Stylus dev node
 
