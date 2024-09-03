@@ -9,15 +9,10 @@
 //! Note that this code is unaudited and not fit for production use.
 
 // Imported packages
-use alloc::string::String;
 use alloy_primitives::{Address, U256};
 use alloy_sol_types::sol;
 use core::marker::PhantomData;
-use stylus_sdk::{
-    evm,
-    msg,
-    prelude::*,
-};
+use stylus_sdk::{evm, msg, prelude::*};
 
 pub trait Erc20Params {
     /// Immutable token name
@@ -65,13 +60,8 @@ pub enum Erc20Error {
 // Note: modifying storage will become much prettier soon
 impl<T: Erc20Params> Erc20<T> {
     /// Movement of funds between 2 accounts
-    /// (invoked by the external transfer() and transfer_from() functions )
-    pub fn _transfer(
-        &mut self,
-        from: Address,
-        to: Address,
-        value: U256,
-    ) -> Result<(), Erc20Error> {
+    /// (invoked by the public transfer() and transfer_from() functions )
+    pub fn _transfer(&mut self, from: Address, to: Address, value: U256) -> Result<(), Erc20Error> {
         // Decreasing sender balance
         let mut sender_balance = self.balances.setter(from);
         let old_sender_balance = sender_balance.get();
@@ -142,9 +132,9 @@ impl<T: Erc20Params> Erc20<T> {
     }
 }
 
-// These methods are external to other contracts
+// These methods are public to other contracts
 // Note: modifying storage will become much prettier soon
-#[external]
+#[public]
 impl<T: Erc20Params> Erc20<T> {
     /// Immutable token name
     pub fn name() -> String {

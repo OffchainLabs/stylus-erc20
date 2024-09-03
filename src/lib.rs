@@ -5,22 +5,15 @@ extern crate alloc;
 // Modules and imports
 mod erc20;
 
+use crate::erc20::{Erc20, Erc20Error, Erc20Params};
 use alloy_primitives::{Address, U256};
-use stylus_sdk::{
-    msg,
-    prelude::*
-};
-use crate::erc20::{Erc20, Erc20Params, Erc20Error};
-
-/// Initializes a custom, global allocator for Rust programs compiled to WASM.
-#[global_allocator]
-static ALLOC: mini_alloc::MiniAlloc = mini_alloc::MiniAlloc::INIT;
+use stylus_sdk::{msg, prelude::*};
 
 /// Immutable definitions
-struct StylusTokenParams;
-impl Erc20Params for StylusTokenParams {
-    const NAME: &'static str = "StylusToken";
-    const SYMBOL: &'static str = "STK";
+struct StylusTestTokenParams;
+impl Erc20Params for StylusTestTokenParams {
+    const NAME: &'static str = "StylusTestToken";
+    const SYMBOL: &'static str = "STTK";
     const DECIMALS: u8 = 18;
 }
 
@@ -29,16 +22,16 @@ impl Erc20Params for StylusTokenParams {
 // storage slots and types.
 sol_storage! {
     #[entrypoint]
-    struct StylusToken {
-        // Allows erc20 to access StylusToken's storage and make calls
+    struct StylusTestToken {
+        // Allows erc20 to access StylusTestToken's storage and make calls
         #[borrow]
-        Erc20<StylusTokenParams> erc20;
+        Erc20<StylusTestTokenParams> erc20;
     }
 }
 
-#[external]
-#[inherit(Erc20<StylusTokenParams>)]
-impl StylusToken {
+#[public]
+#[inherit(Erc20<StylusTestTokenParams>)]
+impl StylusTestToken {
     /// Mints tokens
     pub fn mint(&mut self, value: U256) -> Result<(), Erc20Error> {
         self.erc20.mint(msg::sender(), value)?;
