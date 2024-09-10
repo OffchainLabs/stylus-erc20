@@ -1243,9 +1243,6 @@ name = "stylus-erc20"
 version = "0.1.0"
 dependencies = [
  "alloy-primitives",
- "alloy-sol-macro",
- "alloy-sol-macro-expander",
- "alloy-sol-macro-input",
  "alloy-sol-types",
  "mini-alloc",
  "stylus-sdk",
